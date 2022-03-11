@@ -10,6 +10,14 @@ interface IBalancerVault {
         uint256 deadline
     ) external payable returns (uint256);
 
+    function batchSwap(SwapKind kind,
+          BatchSwapStep[] calldata swaps,
+          IAsset[] calldata assets,
+          FundManagement calldata funds,
+          int256[] calldata limits,
+          uint256 deadline
+    ) external returns (int256[] calldata assetDeltas);
+
     function joinPool(
         bytes32 poolId,
         address sender,
@@ -55,4 +63,14 @@ interface IBalancerVault {
         bytes userData;
         bool fromInternalBalance;
     }
+
+    struct BatchSwapStep {
+        bytes32 poolId;
+        uint256 assetInIndex;
+        uint256 assetOutIndex;
+        uint256 amount;
+        bytes userData;
+    }
 }
+
+interface IAsset {}
