@@ -2,6 +2,8 @@
 pragma solidity ^0.8.6;
 pragma experimental ABIEncoderV2;
 
+import "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
+
 interface IBalancerVault {
     function swap(
         SingleSwap memory singleSwap,
